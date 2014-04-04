@@ -18,6 +18,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 
 import android.speech.*;
 import android.speech.tts.TextToSpeech;
@@ -176,19 +177,13 @@ public class JamsaProjectActivity extends Activity {
 		TextView tv = (TextView) findViewById(R.id.lblTitle);
 		tv.setTypeface(JamsaProjectActivity.getAppTypeface());
 
-		// Create tts object
-		textToSpeech = new TextToSpeech(getApplicationContext(),
-				new TextToSpeech.OnInitListener() {
-					@Override
-					public void onInit(int status) {
-						if (status != TextToSpeech.ERROR) {
-							textToSpeech.setLanguage(spanishLocale);
-						}
-					}
-				});
+		
 
 		// Get UsbManager from Android.
 		manager = (UsbManager) getSystemService(Context.USB_SERVICE);
+		
+		// stay awake!
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		
 	}
 	
@@ -261,6 +256,18 @@ public class JamsaProjectActivity extends Activity {
 	@Override
 	protected void onResume() {
 		super.onResume();
+		
+		// Create tts object
+		textToSpeech = new TextToSpeech(getApplicationContext(),
+				new TextToSpeech.OnInitListener() {
+					@Override
+					public void onInit(int status) {
+						if (status != TextToSpeech.ERROR) {
+							textToSpeech.setLanguage(spanishLocale);
+						}
+					}
+				});
+		
 		onDeviceStateChange();
 		Resources.activity = this;
 	}
