@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, Jamsa Project!</string>
+    <string name="app_name">JamsaProject</string>
+    <string name="new_smart">+</string>
+   
+    <string name="developed_by">Developed by</string>
+    <string name="Copyright">Jamsa Project</string>
+
+    <string name="support_developer">Jamsa Project</string>
+</resources>
